@@ -10,9 +10,6 @@ on:
   pull_request:
     branches: ["main"]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -24,8 +21,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: Install Postgresql
-        uses: harmon758/postgresql-action@v1
+      - uses: actions/setup-node@v3
         with:
-          postgresql version: "15.2"
+          node-version: 16
+      - run: npm ci
+      - run: npm test
