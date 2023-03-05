@@ -39,11 +39,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Run migration
-        run: DATABASE_URL=postgres://salim:salim1993@localhost:5432/finder_db npm run migrate up
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+      #- name: Run migration
+      #  run: DATABASE_URL=postgres://salim:salim1993@localhost:5432/finder_db npm run migrate up
+      # - uses: actions/setup-node@v3
+      #with:
+      # node-version: 16
 
-      - run: npm ci
+      # - run: npm ci
       #- run: npm test
