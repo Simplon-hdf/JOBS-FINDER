@@ -12,13 +12,6 @@
 
 # npx browserslist
 
-<!-- Chrome >=60
-ChromeAndroid >=60
-Firefox >=63
-Edge >=79
-Safari >=13
-iOS >=13 -->
-
 last 2 Chrome versions
 last 1 Firefox version
 last 2 Edge major versions
