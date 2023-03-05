@@ -33,3 +33,20 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can #access it(copy all the source code in the repo)
+      - name: Get code from github repository and download it into the actuel runner
+        uses: actions/checkout@v3
+
+      - name: Install NodeJS #Nodejs is preinstalled in the runner, but we installed manually here to practice
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm ci #npm install Or npm CI(to install the dependencies locked into package-lock.js, so it's better then npm install, that's make us sure that we are using the same version that we used during the development)
+        working-directory: ./jobs-finder-frontend
+      - name: Run tests
+        run: ng test
+        working-directory: ./jobs-finder-frontend
