@@ -48,5 +48,5 @@ jobs:
         run: npm ci #npm install Or npm CI(to install the dependencies locked into package-lock.js, so it's better then npm install, that's make us sure that we are using the same version that we used during the development)
         working-directory: ./jobs-finder-frontend
       - name: Run tests
-        run: ng test
+        run: npm test
         working-directory: ./jobs-finder-frontend
