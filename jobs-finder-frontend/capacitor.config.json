@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "jobs-finder-frontend",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
