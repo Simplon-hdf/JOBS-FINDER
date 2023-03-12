@@ -43,6 +43,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18"
+
       #Frontend side
       - name: Install dependencies
         run: npm ci #npm install Or npm CI(to install the dependencies locked into package-lock.js, so it's better then npm install, that's make us sure that we are using the same version that we used during the development)
@@ -56,6 +57,9 @@ jobs:
       - name: Install backend dependencies
         run: npm ci
         working-directory: ./jobs-finder-backend
+
+      - name: check for postgres
+        run: postgres -V
 
       - name: Run tests for the backend
         run: node server.js
