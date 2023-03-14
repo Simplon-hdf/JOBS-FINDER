@@ -61,7 +61,7 @@ jobs:
       - name: check for postgres
         run: psql -V
       - name: connect to the default posgres postgres_user
-        run: sudo -u postgres
+        run: sudo -i -u postgres
       #- name:
       #connect to database
       #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
