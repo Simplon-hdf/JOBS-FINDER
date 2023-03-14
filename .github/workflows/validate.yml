@@ -60,6 +60,8 @@ jobs:
 
       - name: access psql
         run: service postgresql status
+      - name: Login with postgres username
+        run: sudo su postgres
       # - name: Run tests
       # run: npm test
       # working-directory: ./jobs-finder-frontend
