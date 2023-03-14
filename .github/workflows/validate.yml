@@ -59,7 +59,7 @@ jobs:
         run: sudo service postgresql status
 
       - name: access psql
-        run: service postgresql
+        run: service postgresql status
       # - name: Run tests
       # run: npm test
       # working-directory: ./jobs-finder-frontend
