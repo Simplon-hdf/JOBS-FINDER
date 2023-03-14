@@ -60,7 +60,13 @@ jobs:
 
       - name: check for postgres
         run: psql -V
-
+      - name: connect to the default posgres postgres_user
+        run: sudo -u posgres psql
+      #- name:
+      #connect to database
+      #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
+      #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
+      #run: sudo -u postgres psql
       #- name: Run tests for the backend
       #  run: node server.js
       # working-directory: ./jobs-finder-backend
