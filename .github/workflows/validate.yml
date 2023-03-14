@@ -62,6 +62,8 @@ jobs:
         run: psql -V
       - name: connect to the default posgres postgres_user
         run: sudo -i -u postgres
+      - name: Get You can get a Postgres prompt
+        run: psql
       #- name:
       #connect to database
       #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
