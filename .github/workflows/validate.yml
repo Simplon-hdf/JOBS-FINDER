@@ -62,6 +62,8 @@ jobs:
         run: service postgresql status
       - name: Login with postgres username
         run: sudo su postgres
+      - name: list files
+        run: ls -a
       # - name: Run tests
       # run: npm test
       # working-directory: ./jobs-finder-frontend
