@@ -15,24 +15,24 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on:
+      ubuntu-latest
 
-    services:
       # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_PASSWORD: salim1993
-          POSTGRES_USER: salim
-          POSTGRES_DB: finder_db
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+      #postgres:
+      # Docker Hub image
+      #image: postgres
+      # Provide the password for postgres
+      # env:
+      # POSTGRES_PASSWORD: salim1993
+      # POSTGRES_USER: salim
+      #POSTGRES_DB: finder_db
+      # Set health checks to wait until postgres has started
+      #options: >-
+      #--health-cmd pg_isready
+      # --health-interval 10s
+      #--health-timeout 5s
+      #--health-retries 5
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can #access it(copy all the source code in the repo)
@@ -49,6 +49,10 @@ jobs:
         run: npm ci #npm install Or npm CI(to install the dependencies locked into package-lock.js, so it's better then npm install, that's make us sure that we are using the same version that we used during the development)
         working-directory: ./jobs-finder-frontend
 
+      - name: Start PostgreSQL on Ubuntu
+        run: |
+          sudo systemctl start postgresql.service
+          pg_isready
       # - name: Run tests
       # run: npm test
       # working-directory: ./jobs-finder-frontend
@@ -58,12 +62,12 @@ jobs:
       # run: npm ci
       # working-directory: ./jobs-finder-backend
 
-      - name: check for postgres
-        run: psql -V
-      - name: connect to the default posgres postgres_user
-        run: sudo -i -u postgres
-      - name: Get You can get a Postgres prompt
-        run: psql
+      #- name: check for postgres
+      #run: psql -V
+      #- name: connect to the default posgres postgres_user
+      #run: sudo -i -u postgres
+      # - name: Get You can get a Postgres prompt
+      # run: psql
       #- name:
       #connect to database
       #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
