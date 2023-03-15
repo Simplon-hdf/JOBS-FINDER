@@ -53,11 +53,10 @@ jobs:
       # - name: Run tests
       # run: npm test
       # working-directory: ./jobs-finder-frontend
-
       #Backend side...
       - name: Install backend dependencies
         run: npm ci
-        working-directory: ./jobs-finder-backend
+        # working-directory: ./jobs-finder-backend
 
       - name: Coonect to PostgreSQL
         run: |
@@ -67,7 +66,7 @@ jobs:
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
 
-        working-directory: ./jobs-finder-backend
+        #working-directory: ./jobs-finder-backend
       #- name: check for postgres
       #run: psql -V
       #- name: connect to the default posgres postgres_user
