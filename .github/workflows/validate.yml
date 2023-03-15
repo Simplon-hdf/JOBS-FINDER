@@ -25,7 +25,7 @@ jobs:
           postgres
           # Provide the password for postgres
         env:
-          #POSTGRES_PASSWORD: salim1993
+          POSTGRES_PASSWORD: salim1993
           #POSTGRES_USER: salim
           #POSTGRES_DB: finder_db
           # Set health checks to wait until postgres has started
@@ -50,35 +50,26 @@ jobs:
         run: npm ci #npm install Or npm CI(to install the dependencies locked into package-lock.js, so it's better then npm install, that's make us sure that we are using the same version that we used during the development)
         working-directory: ./jobs-finder-frontend
 
-      - name: Start PostgreSQL on Ubuntu
-        run: |
-          sudo systemctl start postgresql.service
-          pg_isready
-
-      - name: Check postgres service status
-        run: sudo service postgresql status
-
-      - name: access psql
-        run: service postgresql status
-      - name: Login with postgres username
-        run: sudo su postgres
-      - name: list files
-        run: ls -a
       # - name: Run tests
       # run: npm test
       # working-directory: ./jobs-finder-frontend
 
-      ##Backend side...
-      # - name: Install backend dependencies
-      # run: npm ci
-      # working-directory: ./jobs-finder-backend
+      #Backend side...
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: ./jobs-finder-backend
 
+      - name: Coonect to PostgreSQL
+        run: node serve.js
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
+        working-directory: ./jobs-finder-backend
       #- name: check for postgres
       #run: psql -V
       #- name: connect to the default posgres postgres_user
       #run: sudo -i -u postgres
-      - name: Get You can get a Postgres prompt
-        run: psql
+
       #- name:
       #connect to database
       #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
