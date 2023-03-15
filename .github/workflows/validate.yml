@@ -60,11 +60,14 @@ jobs:
         working-directory: ./jobs-finder-backend
 
       - name: Coonect to PostgreSQL
-        run: node serve.js
+        run: |
+          node serve.js
+          ls
         env:
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432
-        working-directory: ./jobs-finder-frontend
+
+        working-directory: ./jobs-finder-backend
       #- name: check for postgres
       #run: psql -V
       #- name: connect to the default posgres postgres_user
