@@ -56,7 +56,7 @@ jobs:
       #Backend side...
       - name: Install backend dependencies
         run: npm ci
-        # working-directory: ./jobs-finder-backend
+        working-directory: ./jobs-finder-backend
 
       - name: Coonect to PostgreSQL
         run: |
