@@ -4,9 +4,9 @@ const pg = require("pg");
 const pool = new pg.Pool({
   host: process.env.POSTGRES_HOST,
   port: process.env.POSTGRES_PORT,
-  database: "postgres",
-  user: "postgres" /* user name and the password we provided to the DB(the same as connecting to DB with migrate)  */,
-  pasword: "postgres",
+  database: "jobs-finder",
+  user: "root" /* user name and the password we provided to the DB(the same as connecting to DB with migrate)  */,
+  pasword: "secret",
 });
 
 //To check the connection is established
