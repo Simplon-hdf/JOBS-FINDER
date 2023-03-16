@@ -2,8 +2,8 @@ const express = require("express");
 const pg = require("pg");
 
 const pool = new pg.Pool({
-  host: "postgres",
-  port: 5432,
+  host: process.env.POSTGRES_HOST,
+  port: process.env.POSTGRES_PORT,
   database: "postgres",
   user: "postgres" /* user name and the password we provided to the DB(the same as connecting to DB with migrate)  */,
   pasword: "postgres",
