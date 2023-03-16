@@ -15,35 +15,60 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    services:
+    runs-on:
+      ubuntu-latest
       # Label used to access the service container
+    services:
       postgres:
         # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
+        image:
+          postgres
+          # Provide the password for postgres
         env:
-          POSTGRES_PASSWORD: salim1993
-          POSTGRES_USER: salim
-          POSTGRES_DB: finder_db
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+          # Set health checks to wait until postgres has started
+          options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+          ports: 5432:5432
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can #access it(copy all the source code in the repo)
+      - name: Get code from github repository and download it into the actuel runner
+        uses: actions/checkout@v3
 
-      #- name: Run migration
-      #  run: DATABASE_URL=postgres://salim:salim1993@localhost:5432/finder_db npm run migrate up
-      # - uses: actions/setup-node@v3
-      #with:
-      # node-version: 16
+      - name: Install NodeJS #Nodejs is preinstalled in the runner, but we installed manually here to practice
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
-      # - run: npm ci
-      #- run: npm test
+      #Frontend side
+      - name: Install dependencies
+        run: npm ci #npm install Or npm CI(to install the dependencies locked into package-lock.js, so it's better then npm install, that's make us sure that we are using the same version that we used during the development)
+        working-directory: ./jobs-finder-frontend
+
+      # - name: Run tests
+      # run: npm test
+      # working-directory: ./jobs-finder-frontend
+      #Backend side...
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: ./jobs-finder-backend
+
+      #- name: check for postgres
+      #run: psql -V
+      #- name: connect to the default posgres postgres_user
+      #run: sudo -i -u postgres
+
+      #- name:
+      #connect to database
+      #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
+      #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
+      #run: sudo -u postgres psql
+      #- name: Run tests for the backend
+      #  run: node server.js
+      # working-directory: ./jobs-finder-backend
