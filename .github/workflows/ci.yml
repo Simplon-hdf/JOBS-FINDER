@@ -22,6 +22,8 @@ jobs:
 
       - name: Install backend dependencies
         run: npm ci
+        working-directory: ./jobs-finder-backend
+
       - name: Start the postgres database
         run: make postgres
         working-directory: ./jobs-finder-backend
