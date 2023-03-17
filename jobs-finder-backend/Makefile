@@ -1,5 +1,5 @@
 postgres:
-	docker run --name finder -p 5433:5432 -e POSTGRES_PASSWORD=secret -e POSTGRES_USER=root -d postgres:14-alpine
+	docker run --name finder -p 5433:5432 -e POSTGRES_PASSWORD=secret -e POSTGRES_USER=root -d postgres
 
 createdb:
 	docker exec -it finder createdb --username=root --owner=root jobs-finder
