@@ -8,7 +8,7 @@ dropdb:
 	docker exec -it finder dropdb jobs-finder
 
 migrateup:
-	DATABASE_URL=postgres://root:secret@localhost:5433/jobs-finder npm run migrate up	
+	DATABASE_URL=postgres://root:secret@postgres:5433/jobs-finder npm run migrate up	
 migratedown:
-	DATABASE_URL=postgres://root:secret@localhost:5433/jobs-finder npm run migrate down
+	DATABASE_URL=postgres://root:secret@postgres:5433/jobs-finder npm run migrate down
 .PHONY: postgres createdb dropdb migrateup migratedown
