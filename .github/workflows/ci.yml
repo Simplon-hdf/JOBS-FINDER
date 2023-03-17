@@ -50,3 +50,7 @@ jobs:
           make postgres 
           make migrateup
         working-directory: ./jobs-finder-backend
+
+      - name: Run migrate up
+        run: make migrateup
+        working-directory: ./jobs-finder-backend
