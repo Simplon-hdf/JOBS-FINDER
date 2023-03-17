@@ -51,6 +51,9 @@ jobs:
         run: make postgres
 
         working-directory: ./jobs-finder-backend
+      - name: Create jobs-finder database
+        run: make createdb
+        working-directory: ./jobs-finder-backend
 
       - name: Run migrate up
         run: make migrateup
