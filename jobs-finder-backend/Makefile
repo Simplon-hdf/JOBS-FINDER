@@ -2,7 +2,7 @@ postgres:
 	docker run --name finder -p 5433:5432 -e POSTGRES_PASSWORD=secret -e POSTGRES_USER=root -d postgres:14-alpine
 
 createdb:
-	docker exec -it  -T finder createdb --username=root --owner=root jobs-finder
+	docker exec -it  -tty finder createdb --username=root --owner=root jobs-finder
 
 dropdb:
 	docker exec -it finder dropdb jobs-finder
