@@ -11,6 +11,25 @@ jobs:
     name: test
     runs-on: ubuntu-latest
 
+    #Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:14
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: jobs-finder
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    #Steps section
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -24,6 +43,8 @@ jobs:
         run: npm ci
         working-directory: ./jobs-finder-backend
 
-      - name: Start the postgres database
-        run: make postgres
+      - name: Start the postgres database and run migrate up
+        run: |
+          make postgres 
+          make migrateup
         working-directory: ./jobs-finder-backend
