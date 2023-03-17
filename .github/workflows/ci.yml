@@ -36,6 +36,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
       - name: Install frontend dependencies
         run: npm ci
@@ -45,10 +47,9 @@ jobs:
         run: npm ci
         working-directory: ./jobs-finder-backend
 
-      - name: Start the postgres database and run migrate up
-        run: |
-          make postgres 
-          make migrateup
+      - name: Start the postgres database
+        run: make postgres
+
         working-directory: ./jobs-finder-backend
 
       - name: Run migrate up
