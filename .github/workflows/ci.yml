@@ -55,6 +55,6 @@ jobs:
         run: make createdb
         working-directory: ./jobs-finder-backend
 
-      - name: Run migrate up
-        run: make migrateup
-        working-directory: ./jobs-finder-backend
+      #- name: Run migrate up
+      # run: make migrateup
+      # working-directory: ./jobs-finder-backend
