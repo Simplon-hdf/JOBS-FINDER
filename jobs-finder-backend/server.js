@@ -13,7 +13,9 @@ const poolConfig = {
 const pool = new pg.Pool(poolConfig);
 
 //To check the connection is established
-//pool.query("SELECT   1 + 1;").then((res) => console.log(res));
+pool.query("SELECT   1 + 1;").then((res) => {
+  console.log("Coonected avec seccess");
+});
 
 const app = express();
 const port = process.env.PORT || 3002;
