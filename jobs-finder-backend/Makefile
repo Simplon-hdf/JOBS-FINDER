@@ -3,14 +3,13 @@ postgres:
 
 createdb:
 	docker exec -d finder createdb --username=root --owner=root jobs-finder 
-
-create:
-	docker exec -it finder psql -U root simple-bank
+	
 dropdb:
 	docker exec -it finder dropdb jobs-finder
 
 migrateup:
 	DATABASE_URL=postgres://root:secret@localhost:5433/jobs-finder npm run migrate up	
+
 migratedown:
 	DATABASE_URL=postgres://root:secret@localhost:5433/jobs-finder npm run migrate down
 .PHONY: postgres createdb dropdb migrateup migratedown
