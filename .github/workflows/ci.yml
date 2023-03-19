@@ -47,7 +47,7 @@ jobs:
         run: npm ci
         working-directory: ./jobs-finder-backend
 
-      - name: Start the postgres database
+      - name: Start the postgres database server
         run: make postgres
 
         working-directory: ./jobs-finder-backend
