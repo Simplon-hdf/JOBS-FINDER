@@ -1,0 +1,60 @@
+name: CONTINUOUS INTEGRATION - CI -
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+
+    #Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:14
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: jobs-finder
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    #Steps section
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: ./jobs-finder-frontend
+
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: ./jobs-finder-backend
+
+      - name: Start the postgres database server
+        run: make postgres
+
+        working-directory: ./jobs-finder-backend
+      - name: Create jobs-finder database
+        run: make createdb
+        working-directory: ./jobs-finder-backend
+
+      #- name: Run migrate up
+      # run: make migrateup
+      # working-directory: ./jobs-finder-backend
