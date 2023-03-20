@@ -1,4 +1,4 @@
-name: CONTINUOUS INTEGRATION - CI -
+name: Run unit tests
 
 on:
   push:
