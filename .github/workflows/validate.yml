@@ -7,8 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -57,18 +55,18 @@ jobs:
       #Backend side...
       - name: Install backend dependencies
         run: npm ci
+        #working-directory: ./jobs-finder-backend
         working-directory: ./jobs-finder-backend
 
       #- name: check for postgres
       #run: psql -V
       #- name: connect to the default posgres postgres_user
       #run: sudo -i -u postgres
-
+      #some comments
       #- name:
       #connect to database
       #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
       #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
       #run: sudo -u postgres psql
       #- name: Run tests for the backend
-      #  run: node server.js
-      # working-directory: ./jobs-finder-backend
+      #run: node
