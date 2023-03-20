@@ -57,6 +57,7 @@ jobs:
       #Backend side...
       - name: Install backend dependencies
         run: npm ci
+        #working-directory: ./jobs-finder-backend
         working-directory: ./jobs-finder-backend
 
       #- name: check for postgres
@@ -70,5 +71,4 @@ jobs:
       #run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
       #run: sudo -u postgres psql
       #- name: Run tests for the backend
-      #  run: node server.js
-      # working-directory: ./jobs-finder-backend
+      #run: node
