@@ -13,6 +13,8 @@ jobs:
     #Steps section
     #Corrected secrets values
     steps:
+      - name: Get code from github repository and download it into the actuel runner
+        uses: actions/checkout@v3
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
