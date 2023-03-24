@@ -63,7 +63,7 @@ jobs:
         id: myRequest
         uses: fjogeleit/http-request-action@v1
         with:
-          url: "http://localhost:3002/"
+          url: "http://localhost:3002"
           method: "GET"
       - name: Show Response
         run: |
