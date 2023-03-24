@@ -69,3 +69,4 @@ jobs:
           echo ${{ steps.myRequest.outputs.response }}
           echo ${{ steps.myRequest.outputs.headers }}
           echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }}
+        ##
