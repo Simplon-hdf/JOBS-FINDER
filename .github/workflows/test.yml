@@ -56,5 +56,5 @@ jobs:
         working-directory: ./jobs-finder-backend
 
       - name: Run migrate up
-        run: npm server.js
+        run: npm start
         working-directory: ./jobs-finder-backend
