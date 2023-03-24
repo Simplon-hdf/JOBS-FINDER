@@ -36,8 +36,8 @@ app.get("/comment", async (req, res) => {
 });
 app.use(express.urlencoded({ extended: true }));
 
-/* app.listen(port, () => {
+app.listen(port, () => {
   console.log("====================================");
   console.log("Application running on port 🔥🔥", port);
   console.log("====================================");
-}); */
+});
