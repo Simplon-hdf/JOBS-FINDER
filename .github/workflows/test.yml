@@ -56,5 +56,5 @@ jobs:
         working-directory: ./jobs-finder-backend
 
       - name: Run migrate up
-        run: make migrateupDev
+        run: npm server.js
         working-directory: ./jobs-finder-backend

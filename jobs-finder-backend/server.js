@@ -1,11 +1,10 @@
-const { log } = require("console");
 const express = require("express");
 const pg = require("pg");
 
 const poolConfig = {
-  host: "db",
+  host: "localhost",
   port: 5432,
-  database: "root",
+  database: "jobs-finder",
   user: "root" /* user name and the password we provided to the DB(the same as connecting to DB with migrate)  */,
   password: "secret",
 };
